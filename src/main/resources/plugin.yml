@@ -1,0 +1,15 @@
+name: Randomise
+version: '1.0-SNAPSHOT'
+main: de.aboutcloud.randomise.Randomise
+api-version: '1.21'
+depend:
+  - CloudConfig
+commands:
+  randomise:
+    description: Rebuild a randomisation mapping.
+    usage: /randomise <drop_blocks|drop_entities|crafting>
+    permission: randomise.admin
+permissions:
+  randomise.admin:
+    description: Allows remapping randomisations.
+    default: op
