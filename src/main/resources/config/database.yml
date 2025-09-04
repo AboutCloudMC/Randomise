@@ -1,0 +1,26 @@
+enabled: true
+
+# Connection
+host: 127.0.0.1
+port: 3306
+database: ${plugin}      # default: snake_case plugin name (resolved at runtime)
+user: minecraft
+password: "secret"
+useSsl: false
+
+# Pool
+pool:
+  maxPoolSize: 10
+  minIdle: 2
+  connectionTimeoutMs: 10000
+  idleTimeoutMs: 600000
+  maxLifetimeMs: 1800000
+
+# Schema / migrations
+schema:
+  createIfMissing: true
+
+migrations:
+  runOnStartup: true
+# Files live under plugins/<PluginName>/config/db/migrations
+# Naming: V1__init.sql, V2__add_index.sql ...

@@ -1,4 +1,4 @@
-package de.aboutcloud.randomise;
+package de.aboutcloud.randomise.util;
 
 public class GameSettings {
 

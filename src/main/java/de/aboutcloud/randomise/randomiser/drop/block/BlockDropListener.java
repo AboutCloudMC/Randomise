@@ -1,6 +1,6 @@
 package de.aboutcloud.randomise.randomiser.drop.block;
 
-import de.aboutcloud.randomise.GameSettings;
+import de.aboutcloud.randomise.util.GameSettings;
 import de.aboutcloud.randomise.Randomise;
 import org.bukkit.GameMode;
 import org.bukkit.Material;

@@ -1,13 +1,12 @@
 package de.aboutcloud.randomise.randomiser;
 
-import de.aboutcloud.cloudConfig.api.CloudConfigService;
+import de.aboutcloud.cloudConfig.api.config.CloudConfigService;
 import de.aboutcloud.randomise.Randomise;
 import de.aboutcloud.randomise.randomiser.drop.block.BlockDropRandomiser;
 import de.aboutcloud.randomise.randomiser.drop.entity.EntityDropRandomiser;
 import de.aboutcloud.randomise.randomiser.recipe.RecipeRandomiser;
 
 import de.aboutcloud.randomise.util.MySound;
-import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 
@@ -29,7 +28,7 @@ public final class RandomiseCommand implements CommandExecutor, TabCompleter {
         this.blockRand = instance.getRandomiserRecord().blockDropRandomiser();
         this.entityRand = instance.getRandomiserRecord().entityDropRandomiser();
         this.recipeRand = instance.getRandomiserRecord().recipeRandomiser();
-        this.configService = instance.getService();
+        this.configService = instance.getConfigService();
     }
 
     @Override
@@ -60,11 +59,8 @@ public final class RandomiseCommand implements CommandExecutor, TabCompleter {
                 recipeRand.rebuild();
                 configService.send(sender, instance, "rebuild.crafting", null);
             }
-            default -> {
-                configService.send(sender, instance, "rebuild.unknown", Map.of("option", which));
-            }
+            default -> configService.send(sender, instance, "rebuild.unknown", Map.of("option", which));
         }
-
         return true;
     }
 

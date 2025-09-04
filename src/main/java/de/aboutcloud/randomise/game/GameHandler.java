@@ -1,10 +1,13 @@
 package de.aboutcloud.randomise.game;
 
-import de.aboutcloud.randomise.GameSettings;
+import de.aboutcloud.randomise.util.GameSettings;
 import de.aboutcloud.randomise.Randomise;
+import de.aboutcloud.randomise.util.LanguageUtil;
 import de.aboutcloud.randomise.util.MySound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+
+import java.util.Locale;
 
 public class GameHandler {
 
@@ -42,14 +45,18 @@ public class GameHandler {
         instance.getHandlerRecord().timerHandler().stop();
         instance.getServer().getOnlinePlayers().forEach((player) -> {
             player.getInventory().clear();
-            giveItems(player.getInventory());
+            giveItems(player);
         });
     }
 
-    public void giveItems(Inventory inv) {
-        inv.setItem(4, instance.getItemRecord().randomiserItem().getItem());
-        inv.setItem(8, instance.getItemRecord().startItem().getItem());
-        inv.setItem(0, instance.getItemRecord().timerItem().getItem());
+    public void giveItems(Player player) {
+        Inventory inv = player.getInventory();
+        Locale locale = LanguageUtil.getLocale(instance, player);
+        inv.setItem(4, instance.getItemRecord().randomiserItem().getItem(locale));
+        inv.setItem(8, instance.getItemRecord().startItem().getItem(locale));
+        inv.setItem(0, instance.getItemRecord().timerItem().getItem(locale));
+        inv.setItem(1, instance.getItemRecord().localeItem().getItem(locale));
+
     }
 
 

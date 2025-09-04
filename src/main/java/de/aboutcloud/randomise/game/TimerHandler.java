@@ -2,10 +2,6 @@ package de.aboutcloud.randomise.game;
 
 import de.aboutcloud.randomise.Randomise;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
@@ -52,16 +48,21 @@ public class TimerHandler {
 
 
     private void sendToAll() {
-        Component msg = plugin.getService().message(plugin, "timer_actionbar", Locale.ENGLISH, Map.of("timer", format(seconds)));
+        Component msg = plugin.getConfigService().message(plugin, "timer_actionbar", Locale.ENGLISH, Map.of("timer", format(seconds)));
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.sendActionBar(msg);
         }
     }
 
     private static String format(int totalSeconds) {
+        int h = totalSeconds / 3600;
         int m = totalSeconds / 60;
         int s = totalSeconds % 60;
-        return String.format("%02d:%02d", m, s);
+        if (h > 0) {
+            return String.format("%02d:%02d:%02d", h, m, s);
+        } else {
+            return String.format("%02d:%02d", m, s);
+        }
     }
 
 

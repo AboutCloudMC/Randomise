@@ -1,5 +1,6 @@
-package de.aboutcloud.randomise;
+package de.aboutcloud.randomise.util;
 
+import de.aboutcloud.randomise.Randomise;
 import de.aboutcloud.randomise.gui.EasyButton;
 import de.aboutcloud.randomise.gui.EasyGUI;
 import org.bukkit.entity.Player;
@@ -24,10 +25,20 @@ public class EventHandle implements Listener {
             PlayerInventory inv = p.getInventory();
             inv.clear();
             if(p.hasPermission("randomise.admin")) {
-                instance.getHandlerRecord().gameHandler().giveItems(inv);
+                instance.getHandlerRecord().gameHandler().giveItems(p);
             }
         }
-        instance.getService().send(p, instance, "success", null);
+        try {
+            instance.getDatabaseService().withTransaction(instance, c -> {
+                try (var ps = c.prepareStatement("INSERT IGNORE INTO randomise(uuid, locale) VALUES (?, ?)")) {
+                    ps.setString(1, p.getUniqueId().toString());
+                    ps.setString(2, p.locale().toLanguageTag());
+                    ps.executeUpdate();
+                }
+            });
+        } catch (Exception exception) {
+            instance.getLogger().warning("Insert failed: " + exception.getMessage());
+        }
     }
 
     @EventHandler

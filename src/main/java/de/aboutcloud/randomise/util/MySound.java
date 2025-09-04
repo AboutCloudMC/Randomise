@@ -1,6 +1,5 @@
 package de.aboutcloud.randomise.util;
 
-import de.aboutcloud.randomise.GameSettings;
 import de.aboutcloud.randomise.Randomise;
 import org.bukkit.Location;
 import org.bukkit.Sound;

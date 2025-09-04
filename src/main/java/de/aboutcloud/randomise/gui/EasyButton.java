@@ -1,6 +1,6 @@
 package de.aboutcloud.randomise.gui;
 
-import de.aboutcloud.randomise.ItemBuilder;
+import de.aboutcloud.randomise.util.ItemBuilder;
 import de.aboutcloud.randomise.util.MySound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.awt.*;
 import java.util.function.Consumer;
 
 public class EasyButton {

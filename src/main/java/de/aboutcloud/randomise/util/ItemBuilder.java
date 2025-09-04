@@ -1,4 +1,4 @@
-package de.aboutcloud.randomise;
+package de.aboutcloud.randomise.util;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;

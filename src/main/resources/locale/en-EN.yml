@@ -1,11 +1,16 @@
 no_permission: "<red>You don't have permission to do that."
 usage: "<yellow>Usage: {command} <drop_blocks|drop_entities|crafting></yellow>"
-rebuild_drop_block: "<green>Block-drop randomisation rebuilt.</green>"
-rebuild_drop_entity: "<green>Entity-drop randomisation rebuilt.</green>"
-rebuild_crafting: "<green>Crafting recipe randomisation rebuilt.</green>"
-rebuild_unknown: "<red>Unknown option: {option}</red>"
+rebuild:
+  drop_block: "<green>Block-drop randomisation rebuilt.</green>"
+  drop_entity: "<green>Entity-drop randomisation rebuilt.</green>"
+  crafting: "<green>Crafting recipe randomisation rebuilt.</green>"
+  unknown: "<red>Unknown option: {option}</red>"
 item:
   randomiser: "<grey>»</grey> <blue>Randomiser</blue> <grey>«</grey>"
   start: "<grey>»</grey> <blue>Start Game</blue> <grey>«</grey>"
   timer: "<grey>»</grey> <blue>Timer</blue> <grey>«</grey>"
-timer_actionbar: "<grey>»</grey> <cyan>{timer}</cyan> <grey>«</grey>"
+timer_actionbar: "<grey>»</grey> <blue>{timer}</blue> <grey>«</grey>"
+randomiser:
+  drop_block: "<grey>»</grey> <blue>Randomise Block Drops</blue> <grey>«</grey>"
+  drop_entity: "<grey>»</grey> <blue>Randomise Entity Drops</blue> <grey>«</grey>"
+  crafting: "<grey>»</grey> <blue>Randomise Crafting Recipes</blue> <grey>«</grey>"

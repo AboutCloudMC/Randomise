@@ -1,9 +1,10 @@
 package de.aboutcloud.randomise.items;
 
-import de.aboutcloud.randomise.GameSettings;
-import de.aboutcloud.randomise.ItemBuilder;
+import de.aboutcloud.randomise.util.GameSettings;
+import de.aboutcloud.randomise.util.ItemBuilder;
 import de.aboutcloud.randomise.Randomise;
 import de.aboutcloud.randomise.gui.EasyGUI;
+import de.aboutcloud.randomise.util.LanguageUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -14,31 +15,27 @@ import java.util.function.Consumer;
 
 public class RandomiserItem extends AbstractItem {
 
-
     public RandomiserItem(Randomise instance) {
-        super(instance);
-    }
-
-    private final ItemStack crafting = new ItemBuilder(Material.CRAFTING_TABLE)
-            .setName(instance.getService().message(instance, "randomiser.crafting", Locale.ENGLISH, null))
-            .build();
-    private final ItemStack drop_block = new ItemBuilder(Material.GRASS_BLOCK)
-            .setName(instance.getService().message(instance, "randomiser.drop_block", Locale.ENGLISH, null))
-            .build();
-    private final ItemStack drop_entity = new ItemBuilder(Material.ZOMBIE_SPAWN_EGG)
-            .setName(instance.getService().message(instance, "randomiser.drop_entity", Locale.ENGLISH, null))
-            .build();
-
-    @Override
-    public ItemStack getItem() {
-        return new ItemBuilder(Material.CHEST)
-                .setName(instance.getService().message(instance, "item.randomiser", Locale.ENGLISH, null))
-                .build();
+        super(instance, Material.CHEST, "item.randomiser");
     }
 
     @Override
     public Consumer<PlayerInteractEvent> onClick() {
         return (e) -> {
+
+            Locale locale = LanguageUtil.getLocale(instance, e.getPlayer());
+
+            ItemStack crafting = new ItemBuilder(Material.CRAFTING_TABLE)
+                    .setName(instance.getConfigService().message(instance, "randomiser.crafting", locale, null))
+                    .build();
+            ItemStack drop_block = new ItemBuilder(Material.GRASS_BLOCK)
+                    .setName(instance.getConfigService().message(instance, "randomiser.drop_block", locale, null))
+                    .build();
+            ItemStack drop_entity = new ItemBuilder(Material.ZOMBIE_SPAWN_EGG)
+                    .setName(instance.getConfigService().message(instance, "randomiser.drop_entity", locale, null))
+                    .build();
+
+
             EasyGUI gui = new EasyGUI(Component.text("Test"), 4)
                     .setBackground()
                     .registerButton(12,crafting, (event) -> {

@@ -1,6 +1,6 @@
 package de.aboutcloud.randomise.items;
 
-import de.aboutcloud.randomise.ItemBuilder;
+import de.aboutcloud.randomise.util.ItemBuilder;
 import de.aboutcloud.randomise.Randomise;
 import org.bukkit.Material;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -12,15 +12,9 @@ import java.util.function.Consumer;
 public class StartItem extends AbstractItem {
 
     public StartItem(Randomise instance) {
-        super(instance);
+        super(instance, Material.RECOVERY_COMPASS, "item.start");
     }
 
-    @Override
-    public ItemStack getItem() {
-        return new ItemBuilder(Material.EMERALD)
-                .setName(instance.getService().message(instance, "item.start", Locale.ENGLISH, null))
-                .build();
-    }
 
     @Override
     public Consumer<PlayerInteractEvent> onClick() {
